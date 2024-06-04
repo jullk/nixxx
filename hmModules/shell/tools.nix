@@ -137,6 +137,6 @@ in {
   in
     mkIf cfg.enable {
       home.packages = packages;
-      programs = programs;
+      inherit programs;
     };
 }

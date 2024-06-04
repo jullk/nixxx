@@ -45,6 +45,7 @@
         shell = {
           zsh.enable = true;
           tools.enable = true;
+          nb.enable = true;
         };
         lazyvim.enable = true;
       };
