@@ -17,6 +17,26 @@
           pkgs.treefmt
         ];
       };
+      rust = mkShell {
+        name = "rust-dev";
+        packages = let
+          nightly-rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
+            toolchain.default.override {
+              extensions = ["rust-src" "rust-analyzer-preview"];
+            });
+        in [
+          nightly-rust
+          taplo
+        ];
+      };
+      go = mkShell {
+        name = "go-dev";
+        packages = [
+          go
+          delve
+          gopls
+        ];
+      };
       haskell = mkShell {
         name = "haskell-dev";
         packages = [

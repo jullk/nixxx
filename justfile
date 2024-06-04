@@ -1,6 +1,9 @@
-default: rebuild
+default: show
 
-rebuild:
+show:
+  nix flake show
+
+b:
   sudo nixos-rebuild switch --flake .#
 
 ls:
@@ -8,3 +11,6 @@ ls:
 
 rollback:
   sudo nixos-rebuild switch --rollback
+
+update:
+  nix flake update
