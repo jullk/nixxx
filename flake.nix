@@ -2,7 +2,7 @@
   description = "Nix again";
 
   nixConfig = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
     substituters = [
       # replace official cache with a mirror located in China
       "https://mirrors.bfsu.edu.cn/nix-channels/store"
@@ -28,13 +28,15 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-inspect.url = "github:bluskript/nix-inspect";
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        ./flakes/example-flake-module.nix
-        ./flakes/nixosModules.nix
+        ./nixosModules
+        ./hosts
       ];
       systems = ["x86_64-linux"];
 
@@ -42,11 +44,21 @@
         # Any flake outputs
       };
 
-      perSystem = {config, pkgs, ...}: {
+      # Access attributes of the same system in self' and inputs'
+      # pkgs is equivalent to inputs'.nixpkgs.legacyPackages
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        ...
+      }: {
         devShells.default = pkgs.mkShell {
           name = "nix-utils";
           packages = [
-            pkgs.nix-inspect
+            inputs'.nix-inspect.packages.default
+            pkgs.alejandra
+            pkgs.treefmt
           ];
         };
       };
