@@ -45,8 +45,8 @@ in {
           "git-extras"
         ];
       in {
-        enableAutosuggestions = true;
         enableCompletion = true;
+        autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
         plugins =
           builtins.map (p: {

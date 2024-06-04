@@ -22,7 +22,6 @@ in {
       difftastic # diff
       lnav # browse log files
 
-      fortune
       gum # interactive shell script
       glow # markdown
       sqlite
@@ -30,101 +29,114 @@ in {
       cloc
       shellcheck
       just # make
-      xonsh
-      joshuto
       yazi
     ];
-    program_list = [
-      "git"
-      "starship"
-      "eza" # ls
-      "bat" # cat
-      "fzf"
-      "mcfly"
-      "direnv"
-      "zellij" # tmux
-      "btop" # htop
-      "broot" # tree
-      "jq"
-      "lazygit"
-      "pandoc"
-      "zoxide" # z
-      "helix"
-      "tmux"
-    ];
-    configs = {
-      git.delta.enable = true;
-      git.extraConfig = {
-        credential.helper = "store";
-      };
-      bat.config = {theme = "TwoDark";};
-      fzf.defaultCommand = "rg --files --hidden --glob '!.git'";
-      fzf.defaultOptions = ["--height=40%" "--layout=reverse" "--border" "--margin=1" "--padding=1"];
-      mcfly.keyScheme = "vim";
-      direnv.nix-direnv.enable = true;
-      zellij.settings = {
-        pane_frames = false;
-        default_mode = "locked";
-        # default_layout = "compact";
-        theme = "catppuccin-frappe";
-        themes.catppuccin-frappe = {
-          bg = "#626880";
-          fg = "#c6d0f5";
-          red = "#e78284";
-          green = "#a6d189";
-          blue = "#8caaee";
-          yellow = "#e5c890";
-          magenta = "#f4b8e4";
-          orange = "#ef9f76";
-          cyan = "#99d1db";
-          black = "#292c3c";
-          white = "#c6d0f5";
+    programs = {
+      git = {
+        enable = true;
+        delta.enable = true;
+        extraConfig = {
+          credential.helper = "store";
         };
       };
-      helix.settings = {
-        theme = "catppuccin_frappe";
-        editor = {
-          lsp.display-messages = true;
+      starship = {
+        enable = true;
+      };
+      eza = {
+        enable = true;
+      };
+      bat = {
+        enable = true;
+        config = {theme = "TwoDark";};
+      };
+      fzf = {
+        enable = true;
+        defaultCommand = "rg --files --hidden --glob '!.git'";
+        defaultOptions = ["--height=40%" "--layout=reverse" "--border" "--margin=1" "--padding=1"];
+      };
+      mcfly = {
+        enable = true;
+        keyScheme = "vim";
+      };
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+      zellij = {
+        enable = true;
+        settings = {
+          pane_frames = false;
+          default_mode = "locked";
+          # default_layout = "compact";
+          theme = "catppuccin-frappe";
+          themes.catppuccin-frappe = {
+            bg = "#626880";
+            fg = "#c6d0f5";
+            red = "#e78284";
+            green = "#a6d189";
+            blue = "#8caaee";
+            yellow = "#e5c890";
+            magenta = "#f4b8e4";
+            orange = "#ef9f76";
+            cyan = "#99d1db";
+            black = "#292c3c";
+            white = "#c6d0f5";
+          };
         };
       };
-      broot.settings = {
-        verbs = [
+      helix = {
+        enable = true;
+        settings = {
+          theme = "catppuccin_frappe";
+          editor = {
+            lsp.display-messages = true;
+          };
+        };
+      };
+      btop = {
+        enable = true;
+      };
+      lazygit = {
+        enable = true;
+      };
+      pandoc = {
+        enable = true;
+      };
+      zoxide = {
+        enable = true;
+      };
+      tmux = {
+        enable = true;
+        terminal = "screen-256color";
+        escapeTime = 10;
+        plugins = with pkgs; [
+          tmuxPlugins.cpu
           {
-            invocation = "edit";
-            shortcut = "e";
-            execution = "$EDITOR {file}";
+            plugin = tmuxPlugins.resurrect;
+            extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+          }
+          {
+            plugin = tmuxPlugins.continuum;
+            extraConfig = ''
+              set -g @continuum-restore 'on'
+              set -g @continuum-save-interval '60'
+            '';
+          }
+          {
+            plugin = tmuxPlugins.catppuccin;
+            extraConfig = ''
+              set -g @catppuccin_flavour 'frappe'
+            '';
           }
         ];
+        extraConfig = ''
+          set-option -sa terminal-features ',xterm-256color:RGB'
+        '';
       };
-      tmux.terminal = "screen-256color";
-      tmux.escapeTime = 10;
-      tmux.plugins = with pkgs; [
-        tmuxPlugins.cpu
-        {
-          plugin = tmuxPlugins.resurrect;
-          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-        }
-        {
-          plugin = tmuxPlugins.continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-            set -g @continuum-save-interval '60'
-          '';
-        }
-        {
-          plugin = tmuxPlugins.catppuccin;
-          extraConfig = ''
-            set -g @catppuccin_flavour 'frappe'
-          '';
-        }
-      ];
-      tmux.extraConfig = ''
-        set-option -sa terminal-features ',xterm-256color:RGB'
-      '';
     };
   in
     mkIf cfg.enable {
       home.packages = packages;
-      programs = lib.recursiveUpdate (lib.genAttrs program_list (_: {enable = true;})) configs;
+      programs = programs;
     };
 }
