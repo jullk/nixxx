@@ -37,30 +37,12 @@
       imports = [
         ./nixosModules
         ./hosts
+        ./devShells
       ];
       systems = ["x86_64-linux"];
 
       flake = {
         # Any flake outputs
-      };
-
-      # Access attributes of the same system in self' and inputs'
-      # pkgs is equivalent to inputs'.nixpkgs.legacyPackages
-      perSystem = {
-        config,
-        self',
-        inputs',
-        pkgs,
-        ...
-      }: {
-        devShells.default = pkgs.mkShell {
-          name = "nix-utils";
-          packages = [
-            inputs'.nix-inspect.packages.default
-            pkgs.alejandra
-            pkgs.treefmt
-          ];
-        };
       };
     };
 }
