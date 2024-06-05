@@ -16,4 +16,8 @@
       interop.appendWindowsPath = false;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    wslu
+  ];
 }

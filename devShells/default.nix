@@ -51,6 +51,7 @@
               wreq
               protolude
             ]))
+          hoogle
           cabal-install
           cabal2nix
           haskell-language-server
