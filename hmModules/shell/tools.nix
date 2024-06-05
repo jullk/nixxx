@@ -27,6 +27,7 @@ in {
       sqlite
       unzip
       cloc
+      youplot # plot in terminal
       shellcheck
       just # make
       yazi
