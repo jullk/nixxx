@@ -30,8 +30,6 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
     nix-inspect.url = "github:bluskript/nix-inspect";
   };
 
@@ -49,12 +47,11 @@
       };
 
       perSystem = {system, ...}: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = [
-            inputs.rust-overlay.overlays.default
-          ];
-        };
+        # _module.args.pkgs = import inputs.nixpkgs {
+        #   inherit system;
+        #   overlays = [
+        #   ];
+        # };
       };
     };
 }
