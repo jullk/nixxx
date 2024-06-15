@@ -23,13 +23,14 @@
         "audio"
         "video"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
       password = "nixos"; # TODO: Deal with secrets later
     };
     environment.systemPackages = with pkgs; [
       nushell
+      cached-nix-shell
     ];
-    # programs.zsh.enable = true;
+    programs.zsh.enable = true;
   };
   hmUsers = {pkgs, ...}: {
     home-manager.users.${userName} = {
@@ -37,7 +38,7 @@
       home.stateVersion = "22.11";
       home.sessionVariables = {
         EDITOR = "nvim";
-        SHELL = "nu";
+        SHELL = "zsh";
       };
       xdg.enable = true;
       programs.git = {
