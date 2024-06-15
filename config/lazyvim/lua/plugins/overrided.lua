@@ -107,4 +107,30 @@ return {
       },
     },
   },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    keys = {
+      {
+        "<leader>rr",
+        function()
+          require('haskell-tools').repl.toggle()
+        end,
+        desc = "Toggle a GHCi repl for the current package"
+      },
+      {
+        "<leader>rf",
+        function()
+          require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0))
+        end,
+        desc = "Toggle a GHCi repl for the current buffer"
+      },
+      {
+        "<leader>rq",
+        function()
+          require('haskell-tools').repl.quit()
+        end,
+        desc = "Quit GHCi repl"
+      }
+    },
+  }
 }
