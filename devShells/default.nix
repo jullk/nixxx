@@ -13,8 +13,10 @@
         name = "nix-utils";
         packages = [
           inputs'.nix-inspect.packages.default
-          pkgs.alejandra
-          pkgs.treefmt
+          alejandra
+          treefmt
+          nil
+          lua-language-server
         ];
       };
       rust = mkShell {
