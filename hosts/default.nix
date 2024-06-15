@@ -42,6 +42,9 @@
         EDITOR = "nvim";
         SHELL = "zsh";
       };
+      nixpkgs.overlays = [
+        self.overlays.default
+      ];
       xdg.enable = true;
       programs.git = {
         userName = "${userName}";
