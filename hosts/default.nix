@@ -13,6 +13,8 @@
   system = "x86_64-linux";
   userName = "atriw";
   userEmail = "jxl42@proton.me";
+  ghName = "jxl3";
+
   nixosUsers = {pkgs, ...}: {
     users.users.root.hashedPassword = "*";
     users.users.${userName} = {
@@ -59,6 +61,24 @@
   wslUsers = {
     wsl.defaultUser = "${userName}";
   };
+  registry = {
+    nix.registry = let
+      mapMyRepo = fid: repo: {
+        from = {
+          id = fid;
+          type = "indirect";
+        };
+        to = {
+          owner = "${ghName}";
+          repo = repo;
+          type = "github";
+        };
+      };
+    in {
+      my-templates = mapMyRepo "t" "nix-templates";
+      my-configs = mapMyRepo "x" "nixxx";
+    };
+  };
 in {
   flake = {
     nixosConfigurations = {
@@ -73,6 +93,7 @@ in {
           nixosUsers
           hmUsers
           wslUsers
+          registry
         ];
       };
     };
