@@ -12,8 +12,8 @@
     ;
   system = "x86_64-linux";
   userName = "atriw";
-  userEmail = "jxl42@proton.me";
-  ghName = "jxl3";
+  userEmail = "juxtaly@proton.me";
+  ghName = "juxtaly";
 
   nixosUsers = {pkgs, ...}: {
     users.users.root.hashedPassword = "*";
