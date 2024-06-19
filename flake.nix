@@ -34,6 +34,9 @@
 
     nix-inspect.url = "github:bluskript/nix-inspect";
     nix-inspect.inputs.nixpkgs.follows = "nixpkgs";
+
+    my-nixvim.url = "github:juxtaly/nixvim";
+    my-nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -51,11 +54,13 @@
       };
 
       perSystem = {system, ...}: {
-        # _module.args.pkgs = import inputs.nixpkgs {
-        #   inherit system;
-        #   overlays = [
-        #   ];
-        # };
+        #  _module.args.pkgs = import inputs.nixpkgs {
+        #    inherit system;
+        #    overlays = [
+        #      (final: prev: {
+        #      })
+        #    ];
+        #  };
       };
     };
 }

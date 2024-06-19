@@ -9,6 +9,7 @@
     nixpkgs
     home-manager
     nixos-wsl
+    my-nixvim
     ;
   system = "x86_64-linux";
   userName = "atriw";
@@ -36,11 +37,18 @@
   };
   hmUsers = {pkgs, ...}: {
     home-manager.users.${userName} = {
-      imports = [../hmModules];
-      home.stateVersion = "22.11";
-      home.sessionVariables = {
-        EDITOR = "nvim";
-        SHELL = "zsh";
+      imports = [
+        ../hmModules
+      ];
+      home = {
+        stateVersion = "22.11";
+        sessionVariables = {
+          EDITOR = "nvim";
+          SHELL = "zsh";
+        };
+        packages = [
+          my-nixvim.packages.${pkgs.system}.default
+        ];
       };
       nixpkgs.overlays = [
         self.overlays.default
@@ -50,6 +58,7 @@
         userName = "${userName}";
         userEmail = "${userEmail}";
       };
+      programs.man.generateCaches = true;
       hmModules = {
         shell = {
           zsh.enable = true;
@@ -57,7 +66,6 @@
           tools.enable = true;
           nb.enable = true;
         };
-        lazyvim.enable = true;
       };
     };
   };
@@ -73,7 +81,7 @@
         };
         to = {
           owner = "${ghName}";
-          repo = repo;
+          inherit repo;
           type = "github";
         };
       };

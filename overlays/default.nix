@@ -17,7 +17,8 @@
     overlayAttrs = {
       inherit
         (inputs'.latest.legacyPackages)
-        neovim-unwrapped
+        # neovim-unwrapped
+        
         helix
         yazi
         ;
