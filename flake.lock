@@ -379,11 +379,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1718901373,
-        "narHash": "sha256-G0JsgdeFhTcerpO7DC/TV+j2kYaWsaoENwZlVyNtLUg=",
+        "lastModified": 1718913294,
+        "narHash": "sha256-V6M+Sw6bpgqQ08FTrwCVZ5T3tudq7JdD4ocs6/1RXt8=",
         "owner": "juxtaly",
         "repo": "nixvim",
-        "rev": "09f7e0d9f23cd77059404688c027cb08fcef61a2",
+        "rev": "24d7d8b289451b4fdf52af26ae795374f19b490f",
         "type": "github"
       },
       "original": {
