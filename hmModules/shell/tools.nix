@@ -14,15 +14,15 @@ in {
   };
   config = let
     packages = with pkgs; [
-      httpie # curl
-      duf # df
+      # httpie # curl
+      # duf # df
       du-dust # du
       tldr # man
       sd # sed
-      difftastic # diff
+      # difftastic # diff
       lnav # browse log files
 
-      gum # interactive shell script
+      # gum # interactive shell script
       glow # markdown
       sqlite
       unzip
@@ -50,6 +50,9 @@ in {
         enable = true;
         config = {theme = "TwoDark";};
       };
+      ripgrep = {
+        enable = true;
+      };
       fzf = {
         enable = true;
         defaultCommand = "rg --files --hidden --glob '!.git'";
@@ -63,40 +66,40 @@ in {
         enable = true;
         nix-direnv.enable = true;
       };
-      zellij = {
-        enable = true;
-        settings = {
-          pane_frames = false;
-          default_mode = "locked";
-          # default_layout = "compact";
-          theme = "catppuccin-frappe";
-          themes.catppuccin-frappe = {
-            bg = "#626880";
-            fg = "#c6d0f5";
-            red = "#e78284";
-            green = "#a6d189";
-            blue = "#8caaee";
-            yellow = "#e5c890";
-            magenta = "#f4b8e4";
-            orange = "#ef9f76";
-            cyan = "#99d1db";
-            black = "#292c3c";
-            white = "#c6d0f5";
-          };
-        };
-      };
-      helix = {
-        enable = true;
-        settings = {
-          theme = "catppuccin_frappe";
-          editor = {
-            lsp.display-messages = true;
-          };
-        };
-      };
-      btop = {
-        enable = true;
-      };
+      # zellij = {
+      #   enable = true;
+      #   settings = {
+      #     pane_frames = false;
+      #     default_mode = "locked";
+      #     # default_layout = "compact";
+      #     theme = "catppuccin-frappe";
+      #     themes.catppuccin-frappe = {
+      #       bg = "#626880";
+      #       fg = "#c6d0f5";
+      #       red = "#e78284";
+      #       green = "#a6d189";
+      #       blue = "#8caaee";
+      #       yellow = "#e5c890";
+      #       magenta = "#f4b8e4";
+      #       orange = "#ef9f76";
+      #       cyan = "#99d1db";
+      #       black = "#292c3c";
+      #       white = "#c6d0f5";
+      #     };
+      #   };
+      # };
+      # helix = {
+      #   enable = true;
+      #   settings = {
+      #     theme = "catppuccin_frappe";
+      #     editor = {
+      #       lsp.display-messages = true;
+      #     };
+      #   };
+      # };
+      # btop = {
+      #   enable = true;
+      # };
       lazygit = {
         enable = true;
       };

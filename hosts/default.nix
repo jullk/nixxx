@@ -62,9 +62,9 @@
       hmModules = {
         shell = {
           zsh.enable = true;
-          nushell.enable = true;
+          # nushell.enable = true;
           tools.enable = true;
-          nb.enable = true;
+          # nb.enable = true;
         };
       };
     };
