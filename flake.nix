@@ -35,7 +35,7 @@
     nix-inspect.url = "github:bluskript/nix-inspect";
     nix-inspect.inputs.nixpkgs.follows = "nixpkgs";
 
-    my-nixvim.url = "github:juxtaly/nixvim";
+    my-nixvim.url = "github:juxtaly/nixvim/mini";
     my-nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
