@@ -91,6 +91,9 @@
       my-configs = mapMyRepo "x" "nixxx";
     };
   };
+  up-to-date-nix = {pkgs, ...}: {
+    nix.package = pkgs.nixVersions.latest;
+  };
 in {
   flake = {
     nixosConfigurations = {
@@ -106,6 +109,7 @@ in {
           hmUsers
           wslUsers
           registry
+          up-to-date-nix
         ];
       };
     };
