@@ -94,6 +94,13 @@
   up-to-date-nix = {pkgs, ...}: {
     nix.package = pkgs.nixVersions.latest;
   };
+  fonts = {pkgs, ...}: {
+    fonts.packages = with pkgs; [
+      monaspace
+      noto-fonts-cjk
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    ];
+  };
 in {
   flake = {
     nixosConfigurations = {
@@ -110,6 +117,7 @@ in {
           wslUsers
           registry
           up-to-date-nix
+          fonts
         ];
       };
     };
