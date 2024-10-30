@@ -30,7 +30,7 @@ in {
       youplot # plot in terminal
       shellcheck
       just # make
-      yazi
+      # yazi
     ];
     programs = {
       git = {

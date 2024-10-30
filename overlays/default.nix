@@ -18,9 +18,6 @@
       inherit
         (inputs'.latest.legacyPackages)
         # neovim-unwrapped
-        
-        helix
-        yazi
         ;
     };
   };
