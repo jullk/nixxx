@@ -48,6 +48,7 @@
         };
         packages = [
           my-nixvim.packages.${pkgs.system}.default
+          pkgs.librime
         ];
       };
       nixpkgs.overlays = [
