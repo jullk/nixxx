@@ -126,12 +126,6 @@ in {
               set -g @continuum-save-interval '60'
             '';
           }
-          {
-            plugin = tmuxPlugins.catppuccin;
-            extraConfig = ''
-              set -g @catppuccin_flavour 'frappe'
-            '';
-          }
         ];
         extraConfig = ''
           set-option -sa terminal-features ',xterm-256color:RGB'
